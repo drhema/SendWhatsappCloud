@@ -9,48 +9,34 @@
     <form id="whatsappForm">
       <div class="field">
         <label class="label" for="templateName">Template Name:</label>
-        <div class="control">
-          <input class="input" type="text" id="templateName" name="templateName" value="gift_july_new">
-        </div>
+        <input class="input" type="text" id="templateName" name="templateName" value="gift_july_new">
       </div>
       <div class="field">
         <label class="label" for="languageCode">Language Code:</label>
-        <div class="control">
-          <input class="input" type="text" id="languageCode" name="languageCode" value="ar">
-        </div>
+        <input class="input" type="text" id="languageCode" name="languageCode" value="ar">
       </div>
       <div class="field">
         <label class="label" for="imageUrl">Image URL:</label>
-        <div class="control">
-          <input class="input" type="text" id="imageUrl" name="imageUrl" value="https://example.com/image.jpg">
-        </div>
+        <input class="input" type="text" id="imageUrl" name="imageUrl" value="https://example.com/image.jpg">
       </div>
       <div class="field">
         <label class="label" for="startRow">Start Row:</label>
-        <div class="control">
-          <input class="input" type="number" id="startRow" name="startRow">
-        </div>
+        <input class="input" type="number" id="startRow" name="startRow">
       </div>
       <div class="field">
         <label class="label" for="endRow">End Row:</label>
-        <div class="control">
-          <input class="input" type="number" id="endRow" name="endRow">
-        </div>
+        <input class="input" type="number" id="endRow" name="endRow">
+      </div>
+      <div class="field">
+        <label class="label" for="delaySeconds">Delay (seconds):</label>
+        <input class="input" type="number" id="delaySeconds" name="delaySeconds" value="1">
       </div>
       <div class="control">
         <button class="button is-primary" type="button" onclick="submitForm()">Send Messages</button>
       </div>
     </form>
+    <button class="button is-danger" onclick="stopMessages()">Stop Sending</button>
   </div>
-<!-- Add this in your Form.html -->
-<button class="button is-danger" onclick="stopMessages()">Stop Sending</button>
-
-<script>
-  function stopMessages() {
-    google.script.run.stopSendingMessages();
-    document.getElementById('status').innerHTML = 'Sending has been stopped by the user.';
-  }
-</script>
 
   <script>
     function submitForm() {
@@ -59,12 +45,18 @@
       var imageUrl = document.getElementById('imageUrl').value;
       var startRow = document.getElementById('startRow').value;
       var endRow = document.getElementById('endRow').value;
+      var delaySeconds = document.getElementById('delaySeconds').value;
 
       google.script.run
         .withSuccessHandler(function(response) {
           alert(response);
         })
-        .sendWhatsAppMessages(templateName, languageCode, imageUrl, startRow, endRow);
+        .sendWhatsAppMessages(templateName, languageCode, imageUrl, startRow, endRow, delaySeconds);
+    }
+
+    function stopMessages() {
+      google.script.run.stopSendingMessages();
+      document.getElementById('status').innerHTML = 'Sending has been stopped by the user.';
     }
   </script>
 </body>
