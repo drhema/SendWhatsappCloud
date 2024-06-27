@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css">
+  <base target="_top">
+</head>
+<body>
+  <div class="container">
+    <form id="whatsappForm">
+      <div class="field">
+        <label class="label" for="templateName">Template Name:</label>
+        <div class="control">
+          <input class="input" type="text" id="templateName" name="templateName" value="gift_july_new">
+        </div>
+      </div>
+      <div class="field">
+        <label class="label" for="languageCode">Language Code:</label>
+        <div class="control">
+          <input class="input" type="text" id="languageCode" name="languageCode" value="ar">
+        </div>
+      </div>
+      <div class="field">
+        <label class="label" for="imageUrl">Image URL:</label>
+        <div class="control">
+          <input class="input" type="text" id="imageUrl" name="imageUrl" value="https://example.com/image.jpg">
+        </div>
+      </div>
+      <div class="field">
+        <label class="label" for="startRow">Start Row:</label>
+        <div class="control">
+          <input class="input" type="number" id="startRow" name="startRow">
+        </div>
+      </div>
+      <div class="field">
+        <label class="label" for="endRow">End Row:</label>
+        <div class="control">
+          <input class="input" type="number" id="endRow" name="endRow">
+        </div>
+      </div>
+      <div class="control">
+        <button class="button is-primary" type="button" onclick="submitForm()">Send Messages</button>
+      </div>
+    </form>
+  </div>
+<!-- Add this in your Form.html -->
+<button class="button is-danger" onclick="stopMessages()">Stop Sending</button>
+
+<script>
+  function stopMessages() {
+    google.script.run.stopSendingMessages();
+    document.getElementById('status').innerHTML = 'Sending has been stopped by the user.';
+  }
+</script>
+
+  <script>
+    function submitForm() {
+      var templateName = document.getElementById('templateName').value;
+      var languageCode = document.getElementById('languageCode').value;
+      var imageUrl = document.getElementById('imageUrl').value;
+      var startRow = document.getElementById('startRow').value;
+      var endRow = document.getElementById('endRow').value;
+
+      google.script.run
+        .withSuccessHandler(function(response) {
+          alert(response);
+        })
+        .sendWhatsAppMessages(templateName, languageCode, imageUrl, startRow, endRow);
+    }
+  </script>
+</body>
+</html>

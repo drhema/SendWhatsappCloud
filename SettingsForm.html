@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  <base target="_top">
+</head>
+<body>
+  <div class="container p-5">
+    <div class="field">
+      <label class="label">API Token:</label>
+      <div class="control">
+        <input class="input" type="text" id="tokenInput" placeholder="Enter your API token">
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Endpoint:</label>
+      <div class="control">
+        <input class="input" type="text" id="endpointInput" placeholder="Enter the endpoint">
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <button class="button is-link" onclick="saveSettings()">Save Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function saveSettings() {
+      var token = document.getElementById('tokenInput').value;
+      var endpoint = document.getElementById('endpointInput').value;
+      google.script.run.withSuccessHandler(function() {
+        alert('Settings saved successfully!');
+        google.script.host.close();
+      }).setSettings(token, endpoint);
+    }
+
+    function loadSettings() {
+      google.script.run.withSuccessHandler(function(settings) {
+        document.getElementById('tokenInput').value = settings.token || '';
+        document.getElementById('endpointInput').value = settings.endpoint || '';
+      }).getSettings();
+    }
+
+    window.onload = loadSettings;
+  </script>
+</body>
+</html>
