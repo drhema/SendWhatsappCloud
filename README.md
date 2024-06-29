@@ -2,8 +2,7 @@
 
 This repository contains scripts and HTML forms for sending WhatsApp messages via Google Sheets and Google Apps Script. It allows for managing API tokens and endpoints directly within Google Sheets.
 # Please check the video tutorial:
-https://www.youtube.com/watch?v=xFyYUg928h8
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/xFyYUg928h8?si=dYAlJBrqI7W4DVXl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 ## Prerequisites
 
 - Access to Google Sheets.
