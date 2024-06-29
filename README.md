@@ -1,6 +1,8 @@
 # Google Sheets WhatsApp Integration
 
 This repository contains scripts and HTML forms for sending WhatsApp messages via Google Sheets and Google Apps Script. It allows for managing API tokens and endpoints directly within Google Sheets.
+# Please check the video tutorial:
+https://www.youtube.com/watch?v=xFyYUg928h8
 
 ## Prerequisites
 
